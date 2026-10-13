@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misi Cilik: Pengembaraan Ilmu</title>
+<style>
+:root{--ink:#20304a;--muted:#66758c;--purple:#6757d9;--purple2:#8978ff;--mint:#c9f7df;--yellow:#ffe48a;--pink:#ffd7e4;--paper:#fffdf7}
+*{box-sizing:border-box}body{margin:0;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:linear-gradient(135deg,#e6f8ff,#f1edff 52%,#fff4dc);min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padding:12px 17px;font-weight:800;transition:transform .15s,filter .15s}button:hover{transform:translateY(-2px);filter:brightness(1.03)}button:focus-visible,input:focus-visible{outline:3px solid #f3ae36;outline-offset:3px}
+.primary{background:var(--purple);color:white;box-shadow:0 5px 0 #4738b0}.secondary{background:#e9e5ff;color:#4738b0}.soft{background:white;color:var(--ink);border:1px solid #e5e7f4}
+.wrap{max-width:1050px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:10px;font-weight:1000;font-size:1.1rem}.logo{width:46px;height:46px;border-radius:15px;background:var(--yellow);display:grid;place-items:center;font-size:25px;box-shadow:0 4px 0 #e9c75e}.tag{font-size:.82rem;color:var(--muted);font-weight:800}
+.panel{background:rgba(255,255,255,.9);border:2px solid white;border-radius:25px;padding:clamp(18px,4vw,34px);box-shadow:0 12px 35px #4d5a8914}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}.eyebrow{display:inline-block;padding:7px 11px;border-radius:99px;background:var(--mint);font-weight:900;font-size:.8rem;color:#126544}.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.02;letter-spacing:-.04em;margin:16px 0}.hero p{color:var(--muted);line-height:1.65}.scene{min-height:250px;border-radius:22px;background:linear-gradient(#9ce5ff 0 57%,#c8f5bb 57%);position:relative;overflow:hidden;display:grid;place-items:center}.sun{position:absolute;right:22px;top:20px;width:53px;height:53px;background:#ffdc70;border-radius:50%}.cloud{position:absolute;left:20px;top:38px;font-size:37px}.island{position:absolute;bottom:25px;width:78%;height:95px;border-radius:50% 50% 15px 15px;background:#68c98d;border-bottom:18px solid #369a69}.castle{position:absolute;bottom:92px;font-size:75px;filter:drop-shadow(0 4px 0 #ffffff60)}.chest{position:absolute;bottom:22px;right:21px;font-size:38px}.bird{position:absolute;top:83px;right:36%;font-size:25px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.stat{background:#f6f5ff;border-radius:16px;padding:13px;text-align:center}.stat strong{display:block;font-size:1.4rem}.stat span{font-size:.78rem;color:var(--muted);font-weight:800}
+h2{margin:0 0 12px;font-size:1.5rem}label{display:block;font-weight:900;font-size:.9rem;margin:13px 0 7px}input{width:100%;border:2px solid #e4e6f2;border-radius:13px;padding:13px;background:white;color:var(--ink)}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}.small{font-size:.83rem;color:var(--muted);line-height:1.5}.section{margin-top:20px}.map{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.level{padding:16px;border-radius:18px;background:#fff8db;border:2px solid #ffedab}.level:nth-child(2){background:#e4f9ed;border-color:#c5f0d5}.level:nth-child(3){background:#f0eaff;border-color:#ded3ff}.level .emoji{font-size:31px}.level h3{margin:8px 0 5px}.level p{font-size:.85rem;color:var(--muted);min-height:38px}.level button{width:100%}.hide{display:none!important}
+.gamehead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.progress{height:10px;background:#ebeaf6;border-radius:99px;overflow:hidden;margin:14px 0 22px}.progress div{height:100%;background:linear-gradient(90deg,#48d6a0,#7c6cf4);width:0;transition:width .3s}.question{font-size:clamp(1.25rem,3vw,1.8rem);font-weight:1000;line-height:1.3;margin:12px 0 20px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}.answer{background:#fff;border:2px solid #e4e6f2;text-align:left;padding:15px;border-radius:16px;color:var(--ink)}.answer.correct{border-color:#31bd7a;background:#e4fff0}.answer.wrong{border-color:#f07878;background:#fff0f0}.feedback{margin-top:16px;padding:14px;border-radius:14px;background:#f4f2ff;line-height:1.5}.leaderlist{padding:0;margin:0;list-style:none}.leaderlist li{display:flex;align-items:center;gap:12px;padding:12px 8px;border-bottom:1px solid #ececf4}.rank{width:34px;height:34px;border-radius:11px;background:#eeeaff;display:grid;place-items:center;font-weight:1000}.player{flex:1;font-weight:900}.points{font-weight:1000;color:#5848c5}.foot{font-size:.8rem;color:var(--muted);text-align:center;margin:20px 0 8px}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.scene{min-height:210px}.map{grid-template-columns:1fr}.level p{min-height:0}.formrow{grid-template-columns:1fr}.answers{grid-template-columns:1fr}.top{align-items:flex-start}.tag{max-width:130px;text-align:right}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><div class="logo">🧭</div><div>MISI CILIK<div class="tag">PENGEMBARAAN ILMU</div></div></div><button class="soft" id="leaderTop">🏆 Leaderboard</button></header>
+<main id="home">
+<section class="panel hero">
+<div><span class="eyebrow">🌟 BELAJAR SAMBIL MENEROKA</span><h1>Jom jadi<br>Juara Ilmu!</h1><p>Terokai pulau misteri, jawab soalan, kumpul bintang dan buka laluan ke harta karun. Setiap jawapan ialah satu langkah menuju kejayaan!</p>
+<div class="formrow"><div><label for="nickname">Nama samaran</label><input id="nickname" maxlength="18" placeholder="Contoh: BintangBiru"></div><div><label for="classCode">Kod kelas</label><input id="classCode" maxlength="16" placeholder="Contoh: 4CERIA"></div></div>
+<p class="small">Gunakan nama samaran, bukan nama penuh. Kod kelas membantu memisahkan kedudukan setiap kelas.</p><button class="primary" id="start" style="width:100%;margin-top:8px">Mulakan pengembaraan 🚀</button></div>
+<div class="scene" aria-label="Ilustrasi pulau pengembaraan"><div class="sun"></div><div class="cloud">☁️</div><div class="bird">🐦</div><div class="island"></div><div class="castle">🏰</div><div class="chest">🧰</div></div>
+</section>
+<section class="section panel"><h2>🗺️ Peta Misi</h2><p class="small">Objektif: jawab sekurang-kurangnya 4 daripada 5 soalan dengan betul untuk melengkapkan setiap misi. Kumpul 10 mata bagi setiap jawapan betul.</p><div class="map">
+<div class="level"><div class="emoji">🌳</div><h3>Misi 1: Hutan Bijak</h3><p>Uji pengetahuan am dan kemahiran berfikir.</p><button class="primary mission" data-level="0">Teroka hutan</button></div>
+<div class="level"><div class="emoji">🌊</div><h3>Misi 2: Teluk Teka-Teki</h3><p>Jawab cabaran seterusnya untuk mara.</p><button class="primary mission" data-level="1">Teroka teluk</button></div>
+<div class="level"><div class="emoji">🌋</div><h3>Misi 3: Gunung Ilmu</h3><p>Capai puncak dan rebut gelaran juara.</p><button class="primary mission" data-level="2">Daki gunung</button></div>
+</div></section>
+</main>
+<section id="game" class="panel hide">
+<div class="gamehead"><button class="soft" id="back">← Peta misi</button><strong id="missionTitle">Misi 1</strong><strong>⭐ <span id="sessionScore">0</span> mata</strong></div>
+<div class="small" id="qCounter">Soalan 1 daripada 5</div><div class="progress"><div id="progressBar"></div></div>
+<div id="question" class="question"></div><div id="answers" class="answers"></div><div id="feedback" class="feedback hide" aria-live="polite"></div><button id="next" class="primary hide" style="margin-top:16px;width:100%">Soalan seterusnya →</button>
+</section>
+<section id="result" class="panel hide"><div style="text-align:center;font-size:54px">🏆</div><h2 style="text-align:center" id="resultTitle">Misi selesai!</h2><p id="resultText" style="text-align:center;line-height:1.6"></p><div class="stats"><div class="stat"><strong id="finalCorrect">0/5</strong><span>Jawapan betul</span></div><div class="stat"><strong id="finalScore">0</strong><span>Mata misi</span></div><div class="stat"><strong id="finalStars">⭐</strong><span>Pencapaian</span></div></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="primary" id="again">Main misi lagi</button><button class="secondary" id="toBoard">Lihat leaderboard</button><button class="soft" id="toHome">Kembali ke peta</button></div></section>
+<section id="leaderboard" class="panel section hide"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>🏆 Leaderboard kelas</h2><button class="soft" id="closeBoard">Tutup</button></div><label for="boardClass">Kod kelas untuk dilihat</label><input id="boardClass" maxlength="16" placeholder="Masukkan kod kelas"><p class="small">Kedudukan disusun mengikut jumlah mata terkumpul pada pelayar/peranti ini.</p><ol id="leaderList" class="leaderlist"></ol><p id="emptyBoard" class="small">Belum ada markah. Main satu misi untuk menjadi pemain pertama!</p><button id="refreshBoard" class="secondary" style="margin-top:14px">Kemas kini paparan</button></section>
+<footer class="foot">Misi Cilik • Projek pembelajaran coding • Versi percubaan</footer>
+</div>
+<script>
+const missions = [
+ {title:"🌳 Misi 1: Hutan Bijak", qs:[
+  {q:"Planet yang kita diami ialah…",a:["Marikh","Bumi","Musytari"," Zuhal"],c:1,e:"Bumi ialah planet tempat manusia, haiwan dan tumbuhan hidup."},
+  {q:"Berapakah 7 × 6?",a:["36","40","42","48"],c:2,e:"7 didarab 6 bersamaan 42."},
+  {q:"Antara berikut, yang manakah sumber cahaya semula jadi?",a:["Lampu meja","Telefon","Matahari","Lampu suluh"],c:2,e:"Matahari menghasilkan cahaya sendiri."},
+  {q:"Kita patut membuang sampah ke dalam…",a:["Sungai","Longkang","Tong sampah","Taman bunga"],c:2,e:"Tong sampah membantu menjaga kebersihan persekitaran."},
+  {q:"Bahasa kebangsaan Malaysia ialah…",a:["Bahasa Melayu","Bahasa Jepun","Bahasa Perancis","Bahasa Arab"],c:0,e:"Bahasa Melayu ialah bahasa kebangsaan Malaysia."}
+ ]},
+ {title:"🌊 Misi 2: Teluk Teka-Teki",qs:[
+  {q:"Haiwan yang hidup di air dan bernafas menggunakan insang ialah…",a:["Kucing","Ikan","Ayam","Arnab"],c:1,e:"Kebanyakan ikan menggunakan insang untuk mengambil oksigen daripada air."},
+  {q:"Berapakah 100 ÷ 4?",a:["20","25","40","50"],c:1,e:"100 dibahagi 4 bersamaan 25."},
+  {q:"Apakah yang perlu dilakukan sebelum makan?",a:["Bermain tanah","Membasuh tangan","Menyentuh sampah","Tidak perlu apa-apa"],c:1,e:"Membasuh tangan membantu mengurangkan penyebaran kuman."},
+  {q:"Arah matahari terbit ialah…",a:["Utara","Selatan","Timur","Barat"],c:2,e:"Matahari kelihatan terbit dari arah timur."},
+  {q:"Bahan yang boleh dikitar semula ialah…",a:["Botol plastik yang sesuai","Sisa makanan bercampur","Tisu kotor","Lampin terpakai"],c:0,e:"Botol plastik tertentu boleh dikitar semula mengikut kemudahan setempat."}
+ ]},
+ {title:"🌋 Misi 3: Gunung Ilmu",qs:[
+  {q:"Apakah organ utama untuk mengepam darah?",a:["Paru-paru","Jantung","Perut","Otak"],c:1,e:"Jantung mengepam darah ke seluruh badan."},
+  {q:"Berapakah 125 + 75?",a:["175","190","200","210"],c:2,e:"125 + 75 = 200."},
+  {q:"Apakah amalan yang membantu menjimatkan air?",a:["Biarkan paip terbuka","Mandi terlalu lama","Tutup paip selepas digunakan","Main air tanpa sebab"],c:2,e:"Menutup paip apabila tidak digunakan mengelakkan pembaziran air."},
+  {q:"Haiwan yang mengalami metamorfosis daripada ulat ialah…",a:["Rama-rama","Kambing","Kuda","Ikan paus"],c:0,e:"Rama-rama melalui peringkat telur, ulat, kepompong dan dewasa."},
+  {q:"Jika jawapan kuiz salah, tindakan terbaik ialah…",a:["Berhenti belajar","Cuba fahami penerangan","Salahkan kawan","Tutup buku"],c:1,e:"Kesilapan ialah peluang untuk belajar dan mencuba lagi."}
+ ]}
+];
+let currentLevel=0, qIndex=0, score=0, correct=0, locked=false, nickname="", classCode="";
+const $=id=>document.getElementById(id);
+function show(id){["home","game","result"].forEach(x=>$(x).classList.toggle("hide",x!==id));}
+function norm(s){return s.trim().toUpperCase().replace(/\s+/g,"");}
+function getBoard(){try{return JSON.parse(localStorage.getItem("misiCilikBoard")||"[]")}catch(e){return []}}
+function saveResult(){
+ const all=getBoard(); all.push({name:nickname,klass:classCode,score:score,correct:correct,level:currentLevel+1,date:Date.now()});
+ localStorage.setItem("misiCilikBoard",JSON.stringify(all)); // Demo only: stored on this browser.
+}
+function startMission(level){
+ nickname=$("nickname").value.trim().slice(0,18); classCode=norm($("classCode").value).slice(0,16);
+ if(!nickname||!classCode){alert("Masukkan nama samaran dan kod kelas dahulu.");return}
+ currentLevel=level;qIndex=0;score=0;correct=0;locked=false;show("game");renderQuestion();
+}
+function renderQuestion(){
+ const m=missions[currentLevel], item=m.qs[qIndex];locked=false;
+ $("missionTitle").textContent=m.title;$("qCounter").textContent=`Soalan ${qIndex+1} daripada ${m.qs.length}`;
+ $("progressBar").style.width=`${qIndex/m.qs.length*100}%`;$("question").textContent=item.q;$("sessionScore").textContent=score;
+ $("feedback").classList.add("hide");$("next").classList.add("hide");$("answers").innerHTML="";
+ item.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=String.fromCharCode(65+i)+". "+answer;b.onclick=()=>choose(i,b);$("answers").appendChild(b)});
+}
+function choose(i,btn){
+ if(locked)return;locked=true;const item=missions[currentLevel].qs[qIndex];const buttons=[...$("answers").children];
+ buttons.forEach((b,j)=>{b.disabled=true;if(j===item.c)b.classList.add("correct")});
+ const fb=$("feedback");
+ if(i===item.c){correct++;score+=10;fb.textContent="Betul! +10 mata. "+item.e}else{btn.classList.add("wrong");fb.textContent="Belum tepat. Jawapan yang betul: "+item.a[item.c]+". "+item.e}
+ fb.classList.remove("hide");$("sessionScore").textContent=score;$("progressBar").style.width=`${(qIndex+1)/missions[currentLevel].qs.length*100}%`;
+ $("next").textContent=qIndex===missions[currentLevel].qs.length-1?"Lihat keputusan 🏆":"Soalan seterusnya →";$("next").classList.remove("hide");
+}
+function nextQuestion(){if(qIndex<missions[currentLevel].qs.length-1){qIndex++;renderQuestion()}else finishMission()}
+function finishMission(){
+ saveResult();show("result");$("finalCorrect").textContent=correct+"/5";$("finalScore").textContent=score;$("finalStars").textContent=correct>=4?"⭐⭐⭐":correct>=2?"⭐⭐":"⭐";
+ const passed=correct>=4;$("resultTitle").textContent=passed?"Hebat, misi berjaya!":"Usaha yang bagus, pengembara!";
+ $("resultText").textContent=`${nickname} memperoleh ${score} mata. ${passed?"Kamu berjaya mencapai objektif misi!":"Cuba lagi untuk mencapai sekurang-kurangnya 4 jawapan betul."} Markah demo direkodkan pada peranti ini sahaja.`;
+ $("again").onclick=()=>startMission(currentLevel);
+}
+function openBoard(){const old=$("boardClass").value;$("boardClass").value=old||norm($("classCode").value);$("leaderboard").classList.remove("hide");renderBoard()}
+function renderBoard(){
+ const klass=norm($("boardClass").value);const list=getBoard().filter(x=>!klass||x.klass===klass);
+ const byPlayer={};list.forEach(x=>{const key=x.klass+"|"+x.name.toLowerCase();if(!byPlayer[key])byPlayer[key]={name:x.name,klass:x.klass,score:0};byPlayer[key].score+=x.score});
+ const rows=Object.values(byPlayer).sort((a,b)=>b.score-a.score||a.name.localeCompare(b.name)).slice(0,20);$("leaderList").innerHTML="";
+ rows.forEach((x,i)=>{const li=document.createElement("li");li.innerHTML=`<span class="rank">${i+1}</span><span class="player"></span><span class="points">${x.score} mata</span>`;li.querySelector(".player").textContent=x.name; $("leaderList").appendChild(li)});
+ $("emptyBoard").classList.toggle("hide",rows.length>0);
+}
+document.querySelectorAll(".mission").forEach(b=>b.addEventListener("click",()=>startMission(Number(b.dataset.level))));
+$("start").onclick=()=>startMission(0);$("next").onclick=nextQuestion;$("back").onclick=()=>show("home");$("leaderTop").onclick=openBoard;$("toBoard").onclick=openBoard;$("closeBoard").onclick=()=>$("leaderboard").classList.add("hide");$("refreshBoard").onclick=renderBoard;$("toHome").onclick=()=>show("home");
+</script>
+</body>
+</html>
